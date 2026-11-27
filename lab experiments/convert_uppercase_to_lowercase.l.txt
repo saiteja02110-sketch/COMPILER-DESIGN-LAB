@@ -1,0 +1,16 @@
+%{
+#include <stdio.h>
+#include <ctype.h>
+%}
+%%
+[A-Z]   { printf("%c", tolower(yytext[0])); }
+.       { printf("%s", yytext); }
+\n      { printf("\n"); }
+%%
+int yywrap(void) { return 1; }
+int main(void)
+{
+    printf("Enter the text:\n");
+    yylex();
+    return 0;
+}
